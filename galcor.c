@@ -1,6 +1,6 @@
-float sum_array( const int *array_in, int size );
+float g_SumArray( const int *array_in, int size );
 
-float sum_array( const int *array_in, int size )
+float g_SumArray( const int *array_in, int size )
 {
     float sum = 0;
     int counter = 0;
