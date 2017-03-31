@@ -1,9 +1,9 @@
-float g_SumArray( const int *array_in, int size );
-float g_AvgArray( const int *array_in, int size );
+float g_Sum( const int *array_in, int size );
+float g_Average( const int *array_in, int size );
 void g_IntInsertionSort( int *inputArrayPtr, int size );
 void g_FloatInsertionSort( int *inputArrayPtr, int size );
 
-float g_SumArray( const int *array_in, int size )
+float g_Sum( const int *array_in, int size )
 {
     float sum = 0;
     int counter = 0;
@@ -17,7 +17,7 @@ float g_SumArray( const int *array_in, int size )
     return sum;
 }
 
-float g_AvgArray( const int *array_in, int size )
+float g_Average( const int *array_in, int size )
 {
     float avg = 0;
     float sum = 0;
