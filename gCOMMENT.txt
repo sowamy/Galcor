@@ -1,0 +1,34 @@
+	               COMMENTING CONVENTIONS USED IN GALCOR
+
+-------------------------------------------LINEBREAK---------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------
+
+
+------------------------------------------MATHEMATICS------------------------------------------------
+RANGE OF VALUES:
+0 -> n		:= All values from 0 to n
+
+
+--------------------------------------------FUNCTION---------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------
+/* FUNCTION: <function name>
+// DESCRIPTION:
+// -- <description body> -- <returns -- given -->
+// MATHEMATICAL EQUATIONS:
+// -- <equation(s)>
+// -- -- <argument(s)/variables> := <description>
+// ARGUMENTS:
+// -- <argument(s)> := <description>
+// INTERMEDIATE VARIABLES:
+// -- <variables not returned or in arguments> := <description>
+// RETURN:
+// -- <return <type>return variable> 
+// ERROR:
+// -- <error conditions> / NONE
+// TESTED: YES / NO
+*/
+-- ( -- )
+{
+	
+} // END FUNCTION --
+//-----------------------------------------------------------------------------------------------------------
