@@ -41,6 +41,7 @@ menuPtr *gTERMINAL_InitializeMenu( char title[ 20 ],
                                     char option4[ 20 ], char option5[ 20 ], char option6[ 20 ],
                                     char option7[ 20 ], char option8[ 20 ], char option9[ 20 ] );
 void gTERMINAL_PrintIntegerArray( int *source, int size );
+void gTERMINAL_PrintFloatArray( float *source, int size );
 //-----------------------------------------------------------------------------------------------------------
 /* FUNCTION: gTERMINAL_Start
 // DESCRIPTION:
@@ -77,6 +78,7 @@ void gTERMINAL_Start( void )
     while( guiON == true ) {
         switch( state ) {
         case 00:
+            system( "cls" );
             gTERMINAL_PrintTitle();
             menuChoice = gTERMINAL_PrintMenu( mainMenu );
             if( menuChoice == 0 ) { guiON = false; }
@@ -103,8 +105,6 @@ void gTERMINAL_Start( void )
 */
 void gTERMINAL_PrintTitle( void )
 {
-    //   ONLY WORKS IN WINDOWS, MUST CHANGE TO "clear" IN LINUX!!!
-    system( "cls" ); // Clears Terminal Screen
     puts( "------------------------------------------------------------------------------" );
     puts( "***1.0***************************   GALCOR   ***************************1.0***" );
     puts( "------------------------------------------------------------------------------" );
@@ -187,21 +187,49 @@ menuPtr *gTERMINAL_InitializeMenu( char title[ 20 ], char option1[ 20 ], char op
 // -- source        := Pointer to address of first element in array which needs to be printed.
 // -- size          := Size of the array to be printed.
 // INTERMEDIATE VARIABLES:
-// -- currentPtr    := Points to the current location of element to be printed in the loop.
+// -- currentPtr    := Points to the current location of the element to be printed in the loop
 // -- i             := Counter in for loop
 // RETURN: NONE
-// ERROR:
-// -- <error conditions> / NONE
-// TESTED: YES
+// ERROR: NONE
+// TESTED: YES - LIMITED
 */
 void gTERMINAL_PrintIntegerArray( int *source, int size )
 {
+    gTERMINAL_PrintTitle();
+
 	int *currentPtr = source;
 	int i = 0;
 	for ( i = 0; i < size; i++ )
     {
-        printf( "Element %3d: %-5d\n", ( i + 1 ), *currentPtr );
+        printf( "Element %3d: %-5d\n", i, *currentPtr );
         currentPtr++;
     } // END for
 } // END FUNCTION gTERMINAL_PrintIntegerArray
+//-----------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------
+/* FUNCTION: gTERMINAL_PrintFloatArray
+// DESCRIPTION:
+// -- Prints <size> elements of a floating-point array at location pointed to by <source>
+// ARGUMENTS:
+// -- source        := Pointer to address of first element in array which needs to be printed
+// -- size          := Size of the array which needs to be printed
+// INTERMEDIATE VARIABLES:
+// -- currentPtr    := Points to the current location of the element to be printed in the loop
+// -- i             := Counter in for loop
+// RETURN: NONE
+// ERROR: NONE
+// TESTED: YES - LIMITED
+*/
+void gTERMINAL_PrintFloatArray( float *source, int size )
+{
+	gTERMINAL_PrintTitle();
+
+	float *currentPtr = source;
+	int i = 0;
+	for( i = 0; i < size; i++ )
+    {
+        printf( "Element %3d: %-5f\n", i, *currentPtr );
+        currentPtr++;
+    }
+} // END FUNCTION --
 //-----------------------------------------------------------------------------------------------------------
