@@ -1,0 +1,545 @@
+\documentclass{article}
+%-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+% Packages
+\usepackage[margin=1in,includefoot]{geometry}
+\usepackage{enumitem}
+%-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\begin{document}
+%-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+% Title Page
+\title{GALCOR Documentation}
+\author{Angelino Lefevers}
+\maketitle
+\thispagestyle{empty}
+\cleardoublepage
+%-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+% Table of Contents
+\tableofcontents
+\thispagestyle{empty}
+\cleardoublepage
+%-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+% Introduction
+\setcounter{page}{1}
+\section{Introduction}
+GALCOR is an assistance program in which performs various calculations and functions for the user. GALCOR functionality can be accessed by either calling a variety of functions from a program script, or by using the GALCOR GUI.
+\cleardoublepage
+%-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+% gGENERATOR
+\cleardoublepage
+\section{gGENERATOR.c}
+
+% -- Function Prototypes
+\subsection{Function Prototypes}
+{\renewcommand{\labelitemi}{$\triangleright$}
+\begin{itemize}[noitemsep]
+\footnotesize
+\item int $^{\ast}$\textbf{gGENERATOR\_DCSignalGenerator0}(int \textit{size}, int \textit{amplitude}, int \textit{delay});
+\item double $^{\ast}$\textbf{gGENERATOR\_DCSignalGenerator1}(int \textit{size}, double \textit{amplitude}, int \textit{delay});
+\item int $^{\ast}$\textbf{gGENERATOR\_DCSignalInserter0}(int $^{\ast}$\textit{signalSource}, int \textit{index}, int \textit{sourceSize}, int \textit{amplitude}, int \textit{signalSize});
+\item  double $^{\ast}$\textbf{gGENERATOR\_DCSignalInserter1}(int $^{\ast}$\textit{signalSource}, int \textit{index}, int \textit{sourceSize}, double \textit{amplitude}, int \textit{signalSize});
+\item int $^{\ast}$\textbf{gGENERATOR\_ImpulseSignalGenerator0}(int \textit{size}, int \textit{amplitude}, int \textit{delay});
+\item double $^{\ast}$\textbf{gGENERATOR\_ImpulseSignalGenerator1}(int \textit{size}, double \textit{amplitude}, int \textit{delay});
+\item int $^{\ast}$\textbf{gGENERATOR\_RandomIntegerSignalGenerator}(int \textit{size}, int \textit{minRange}, int \textit{maxRange});
+\normalsize
+\end{itemize}
+\cleardoublepage
+% -- Functions
+\subsection{Functions}
+
+% -- --  DCSignalGenerator0
+\subsubsection{gGENERATOR\_DCSignalGenerator0}
+{\renewcommand{\labelitemi}{$\bullet$}
+\begin{itemize}
+\item Prototype:
+	\begin{itemize}
+	\item int $^{\ast}$\textbf{gGENERATOR\_DCSignalGenerator0}(int \textit{\textbf{size}}, int \textit{\textbf{amplitude}}, int \textit{\textbf{delay}});
+	\end{itemize}
+\item Description:
+	\begin{itemize}[noitemsep]
+	\item Consists of integer values
+	\item Generates a constant DC signal of length \textit{size}
+	\item Returns a pointer to the loaction of the generated DC signal
+	\end{itemize}
+\item Arguments:
+	\begin{itemize}[noitemsep]
+	\item \textit{int} \textit{\textbf{size}} := Number of samples in the signal to be generated.
+	\item \textit{int} \textit{\textbf{amplitude}} := The amplitude of the DC signal to be generated.
+	\item \textit{int} \textit{\textbf{delay}} := Number of samples the generated DC signal will be delayed from TIME 0.
+	\end{itemize} 
+\item Intermediate Variables:
+	\begin{itemize}[noitemsep]
+	\item \textit{int$^{\ast}$} \textbf{dcSignalSource} := Pointer to first element of the generated signal.
+	\item \textit{int$^{\ast}$} \textbf{tSignal} := Temporary offset pointer used to iterate through and initialize the signal.
+	\item \textit{int} \textbf{i, j} := Counters to be used in looping.
+	\end{itemize}
+\item Return:
+	\begin{itemize}
+	\item \textit{int$^{\ast}$} \textbf{dcSignalSource}
+	\end{itemize}
+\item Tested:
+	\begin{itemize}
+	\item \textbf{YES} - LIMITED
+	\end{itemize}
+\end{itemize}
+
+% -- --  DCSignalGenerator1
+\cleardoublepage
+\subsubsection{gGENERATOR\_DCSignalGenerator1}
+{\renewcommand{\labelitemi}{$\bullet$}
+\begin{itemize}
+\item Prototype:
+	\begin{itemize}
+	\item double $^{\ast}$\textbf{gGENERATOR\_DCSignalGenerator1}(int \textit{\textbf{size}}, double \textit{\textbf{amplitude}}, int \textit{\textbf{delay}});
+	\end{itemize}
+\item Description:
+	\begin{itemize}[noitemsep]
+	\item Consists of double floating-point values
+	\item Generates a constant DC signal of length \textit{size}
+	\item Returns a pointer to the loaction of the generated DC signal
+	\end{itemize}
+\item Arguments:
+	\begin{itemize}[noitemsep]
+	\item \textit{int} \textit{\textbf{size}} := Number of samples in the signal to be generated.
+	\item \textit{double} \textit{\textbf{amplitude}} := The amplitude of the DC signal to be generated.
+	\item \textit{int} \textit{\textbf{delay}} := Number of samples the generated DC signal will be delayed from TIME 0.
+	\end{itemize} 
+\item Intermediate Variables:
+	\begin{itemize}[noitemsep]
+	\item \textit{double$^{\ast}$} \textbf{dcSignalSource} := Pointer to first element of the generated signal.
+	\item \textit{double$^{\ast}$} \textbf{tSignal} := Temporary offset pointer used to iterate through and initialize the signal.
+	\item \textit{int} \textbf{i, j} := Counters to be used in looping.
+	\end{itemize}
+\item Return:
+	\begin{itemize}
+	\item \textit{double$^{\ast}$} \textbf{dcSignalSource}
+	\end{itemize}
+\item Tested:
+	\begin{itemize}
+	\item \textbf{YES} - LIMITED
+	\end{itemize}
+\end{itemize}
+
+% -- -- DCSignalInserter0
+\cleardoublepage
+\subsubsection{gGENERATOR\_DCSignalInserter0}
+{\renewcommand{\labelitemi}{$\bullet$}
+\begin{itemize}
+\item Prototype:
+	\begin{itemize}
+	\item int $^{\ast}$\textbf{gGENERATOR\_DCSignalGenerator0}(int $^{\ast}$\textit{\textbf{signalSource}}, int \textit{\textbf{index}}, int \textit{\textbf{sourceSize}}, int \textit{\textbf{amplitude}}, int \textit{\textbf{sourceSize}});
+	\end{itemize}
+\item Description:
+	\begin{itemize}[noitemsep]
+	\item Consists of integers
+	\item Takes an array of integer elements of size \textit{sourceSize} and pointed to by \textit{signalSource}.
+	\item Inserts a DC signal into the index value \textit{index} from the signal source.
+	\item The DC signal inserted is \textit{signalSize} elements long and has an amplitude of \textit{amplitude}.
+	\end{itemize}
+\item Arguments:
+	\begin{itemize}[noitemsep]
+	\item \textit{int$^{\ast}$\textbf{signalSource}} := Pointer to the first element of the inputted signal.
+	\item \textit{int \textbf{index}} :=Index value of where the generated DC signal is inserted.
+	\item \textit{int \textbf{sourceSize}} := The number of elements in the inputted signal.
+	\end{itemize} 
+\item Intermediate Variables:
+	\begin{itemize}[noitemsep]
+	\item \textit{int$^{\ast}$} \textbf{dcSignalSource} := Pointer to first element of the generated signal.
+	\item \textit{int$^{\ast}$} \textbf{tSignal} := Temporary offset pointer used to iterate through and initialize the signal.
+	\item \textit{int} \textbf{i, j} := Counters to be used in looping.
+	\end{itemize}
+\item Return:
+	\begin{itemize}
+	\item \textit{int$^{\ast}$} \textbf{dcSignalSource}
+	\end{itemize}
+\item Tested:
+	\begin{itemize}
+	\item \textbf{YES} - LIMITED
+	\end{itemize}
+\end{itemize}
+%-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+% gECON.c
+\cleardoublepage
+\section{gECON.c}
+
+% -- Function Prototypes
+\subsection{Function Prototypes}
+{\renewcommand{\labelitemi}{$\triangleright$}
+\begin{itemize}[noitemsep]
+\footnotesize
+\item double $^{\ast}$\textbf{gECON\_SellingPricePerUnit}(double \textit{constant\_a}, double \textit{constant\_b}, double \textit{demand});
+\item double $^{\ast}$\textbf{gECON\_Demand}(double \textit{constant\_a}, double \textit{constant\_b}, double \textit{pricePerUnit});
+\item double $^{\ast}$\textbf{gECON\_TotalRevenue0}(double \textit{price}, double \textit{demand});
+\item double $^{\ast}$\textbf{gECON\_TotalRevenue1}(double \textit{constant\_a}, double \textit{constant\_b}, double \textit{demand});
+\item double $^{\ast}$\textbf{gECON\_TotalCost}(double \textit{fixedCosts}, double \textit{variableCostsPerUnit}, double \textit{demand});
+\item double $^{\ast}$\textbf{gECON\_Profit0}(double \textit{totalRevenue}, double \textit{totalCosts});
+\item double $^{\ast}$\textbf{gECON\_Profit1}(double \textit{constant\_a}, double \textit{constant\_b}, double \textit{demand}, double \textit{fixedCosts}, double \textit{variableCostsPerUnit});
+\normalsize
+\end{itemize}
+\cleardoublepage
+{\renewcommand{\labelitemi}{$\bullet$}
+
+% -- Functions
+\subsection{Functions}
+
+% -- -- SellingPricePerUnit
+\subsubsection{gECON\_SellingPricePerUnit}
+\begin{itemize}
+\item Prototype:
+	\begin{itemize}
+	\item double \textbf{gECON\_SellingPricePerUnit}(double \textbf{\textit{constant\_a}}, double \textbf{\textit{constant\_b}}, double \textbf{\textit{demand}});
+	\end{itemize}
+\item Description:
+	\begin{itemize}
+	\item Returns the selling price per unit given constants \textit{constant\_a} and \textit{constant\_b}, and the demand \textit{demand}.
+	\end{itemize}
+\item Equation:     $p = a - bD$
+	\begin{itemize}
+	\item p := Price per Unit
+	\item D := "Demand" - Total number of units sold.
+	\item a, b := constants
+	\item Conditions:
+		\begin{itemize}
+		\item $0 \le D \le \frac{a}{b}$
+		\item $a > 0$
+		\item $b > 0$
+		\end{itemize}
+	\end{itemize}
+\item Arguments:
+	\begin{itemize}[noitemsep]
+	\item \textit{double \textbf{constant\_a}} := Constant
+	\item \textit{double \textbf{constant\_b}} := Constant
+	\item \textit{double \textbf{demand}} := The total number of units sold.
+	\end{itemize} 
+\item Intermediate Variables: \textbf{NONE}
+\item Return:
+	\begin{itemize}
+	\item \textit{double} \textbf{pricePerUnit}
+	\end{itemize}
+\item Tested:
+	\begin{itemize}
+	\item \textbf{YES} - LIMITED
+	\end{itemize}
+\end{itemize}
+
+% -- -- Demand
+\cleardoublepage
+\subsubsection{gECON\_Demand}
+
+\begin{itemize}
+\item Prototype:
+	\begin{itemize}
+	\item double \textbf{gECON\_Demand}(double \textbf{\textit{constant\_a}}, double \textbf{\textit{constant\_b}}, double \textbf{\textit{pricePerUnit}});
+	\end{itemize}
+\item Description:
+	\begin{itemize}
+	\item Returns the selling price per unit given constants \textit{constant\_a} and \textit{constant\_b}, and the price per unit \textit{pricePerUnit}.
+	\end{itemize}
+\item Equation:     $D = \frac{a - p}{b}$
+	\begin{itemize}
+	\item D := "Demand" - Total number of units sold.
+	\item p := Price per Unit
+	\item a, b := constants
+	\item Conditions:
+		\begin{itemize}
+		\item $b \ne 0$
+		\end{itemize}
+	\end{itemize}
+\item Arguments:
+	\begin{itemize}[noitemsep]
+	\item \textit{double \textbf{constant\_a}} := Constant
+	\item \textit{double \textbf{constant\_b}} := Constant
+	\item \textit{double \textbf{pricePerUnit}} := The price per unit which was manufactured.
+	\end{itemize} 
+\item Intermediate Variables: \textbf{NONE}
+\item Return:
+	\begin{itemize}
+	\item \textit{double} \textbf{demand}
+	\end{itemize}
+\item Tested:
+	\begin{itemize}
+	\item \textbf{YES} - LIMITED
+	\end{itemize}
+\end{itemize}
+
+% -- -- Total Revenue 0
+\cleardoublepage
+\subsubsection{gECON\_TotalRevenue0}
+
+\begin{itemize}
+\item Prototype:
+	\begin{itemize}
+	\item double \textbf{gECON\_TotalRevenue0}(double \textbf{\textit{pricePerUnit}}, double \textbf{\textit{demand}});
+	\end{itemize}
+\item Description:
+	\begin{itemize}
+	\item Returns the total revenue given the \textit{pricePerUnit} and the \textit{demand} of the product.
+	\end{itemize}
+\item Equation:     $TR = pD$
+	\begin{itemize}[noitemsep]
+	\item TR := Total revenue earned from a production.
+	\item p := Price per Unit
+	\item D := Demand, or the total number of units sold after production.
+	\end{itemize}
+\item Arguments:
+	\begin{itemize}[noitemsep]
+	\item \textit{double \textbf{pricePerUnit}} := Price per Unit
+	\item \textit{double \textbf{demand}} := Total number of units sold.
+	\end{itemize} 
+\item Intermediate Variables: \textbf{NONE}
+\item Return:
+	\begin{itemize}
+	\item \textit{double} \textbf{totalRevenue}
+	\end{itemize}
+\item Tested:
+	\begin{itemize}
+	\item \textbf{YES} - LIMITED
+	\end{itemize}
+\end{itemize}
+
+% -- -- Total Revenue 1
+\cleardoublepage
+\subsubsection{gECON\_TotalRevenue1}
+
+\begin{itemize}
+\item Prototype:
+	\begin{itemize}
+	\item double \textbf{gECON\_TotalRevenue1}(double \textbf{\textit{constant\_a}}, double \textbf{\textit{constant\_b}}, double \textbf{\textit{demand}});
+	\end{itemize}
+\item Description:
+	\begin{itemize}
+	\item Returns the total revenue given the constants \textit{constant\_a} and \textit{constant\_b},  and the \textit{demand} of the product.
+	\end{itemize}
+\item Equation:     $TR = (a - bD)D$
+	\begin{itemize}[noitemsep]
+	\item TR := Total revenue earned from a production.
+	\item D := Demand, or the total number of units sold after production.
+	\item a, b := Constants
+	\item Conditions:
+		\begin{itemize}
+		\item $0 \le D \le \frac{a}{b}$
+		\item $a > 0$
+		\item $b > 0$
+		\end{itemize}
+	\end{itemize}
+\item Arguments:
+	\begin{itemize}[noitemsep]
+	\item \textit{double \textbf{constant\_a}} := Constant
+	\item \textit{double \textbf{constant\_b}} := Constant
+	\item \textit{double \textbf{demand}} := Total number of units sold after production.
+	\end{itemize} 
+\item Intermediate Variables: \textbf{NONE}
+\item Return:
+	\begin{itemize}
+	\item \textit{double} \textbf{totalRevenue}
+	\end{itemize}
+\item Tested:
+	\begin{itemize}
+	\item \textbf{YES} - LIMITED
+	\end{itemize}
+\end{itemize}
+
+% -- -- Total Cost 0
+\cleardoublepage
+\subsubsection{gECON\_TotalCost0}
+
+\begin{itemize}
+\item Prototype:
+	\begin{itemize}
+	\item double \textbf{gECON\_TotalCost0}(double \textbf{\textit{fixedCosts}}, double \textbf{\textit{variableCosts}});
+	\end{itemize}
+\item Description:
+	\begin{itemize}
+	\item Returns the total costs of production given the \textit{fixedCosts} the \textit{variableCosts} of the production.
+	\end{itemize}
+\item Equation:     $C_T = C_F + C_V$
+	\begin{itemize}[noitemsep]
+	\item $C_T$ := Total costs in production.
+	\item $C_F$ := Total fixed (initial) costs of production.
+	\item $C_V$ := Total variable costs of production.
+	\end{itemize}
+\item Arguments:
+	\begin{itemize}[noitemsep]
+	\item \textit{double \textbf{fixedCosts}} := Fixed costs of the production.
+	\item \textit{double \textbf{variableCosts}} := Variable costs of the production
+	\end{itemize} 
+\item Intermediate Variables: \textbf{NONE}
+\item Return:
+	\begin{itemize}
+	\item \textit{double} \textbf{totalCosts}
+	\end{itemize}
+\item Tested:
+	\begin{itemize}
+	\item \textbf{YES} - LIMITED
+	\end{itemize}
+\end{itemize}
+
+% -- -- Total Cost 1
+\cleardoublepage
+\subsubsection{gECON\_TotalCost1}
+
+\begin{itemize}
+\item Prototype:
+	\begin{itemize}
+	\item double \textbf{gECON\_TotalCost1}(double \textbf{\textit{fixedCosts}}, double \textbf{\textit{variableCostsPerUnit}}, double \textbf{\textit{demand}});
+	\end{itemize}
+\item Description:
+	\begin{itemize}
+	\item Returns the total costs of production given the \textit{fixedCosts}, the \textit{variableCostsPerUnit}, and the \textit{demand} of the production.
+	\end{itemize}
+\item Equation:     $C_T = C_F + ( c_v * D )$
+	\begin{itemize}[noitemsep]
+	\item $C_T$ := Total costs in production.
+	\item $C_F$ := Total fixed (initial) costs of production.
+	\item $c_v$ := Variable costs of production per unit.
+	\item D := Total number of units sold after production.
+	\end{itemize}
+\item Arguments:
+	\begin{itemize}[noitemsep]
+	\item \textit{double \textbf{fixedCosts}} := Fixed costs of the production.
+	\item \textit{double \textbf{variableCostsPerUnit}} := Variable costs per unit.
+	\item \textit{double \textbf{demand}} := Total number of units sold after production.
+	\end{itemize} 
+\item Intermediate Variables: \textbf{NONE}
+\item Return:
+	\begin{itemize}
+	\item \textit{double} \textbf{totalCosts}
+	\end{itemize}
+\item Tested:
+	\begin{itemize}
+	\item \textbf{YES} - LIMITED
+	\end{itemize}
+\end{itemize}
+
+% -- -- Profit
+\cleardoublepage
+\subsubsection{gECON\_Profit}
+
+\begin{itemize}
+\item Prototype:
+	\begin{itemize}
+	\item double \textbf{gECON\_Profit}(double \textbf{\textit{totalRevenue}}, double \textbf{\textit{totalCosts}});
+	\end{itemize}
+\item Description:
+	\begin{itemize}
+	\item Returns the total costs of production given the \textit{fixedCosts}, the \textit{variableCostsPerUnit}, and the \textit{demand} of the production.
+	\end{itemize}
+\item Equation:     $P = TR - C_T$
+	\begin{itemize}[noitemsep]
+	\item P := Total profit made from production.
+	\item TR := Total revenue earned from production.
+	\item $C_T$ := Total costs in production.
+	\end{itemize}
+\item Arguments:
+	\begin{itemize}[noitemsep]
+	\item \textit{double \textbf{fixedCosts}} := Fixed costs of the production.
+	\item \textit{double \textbf{variableCostsPerUnit}} := Variable costs per unit.
+	\item \textit{double \textbf{demand}} := Total number of units sold after production.
+	\end{itemize} 
+\item Intermediate Variables: \textbf{NONE}
+\item Return:
+	\begin{itemize}
+	\item \textit{double} \textbf{profit}
+	\end{itemize}
+\item Tested:
+	\begin{itemize}
+	\item \textbf{YES} - LIMITED
+	\end{itemize}
+\end{itemize}
+
+% -- -- Revenue Maximized Demand
+\cleardoublepage
+\subsubsection{gECON\_RevenueMaximizedDemand}
+
+\begin{itemize}
+\item Prototype:
+	\begin{itemize}
+	\item double \textbf{gECON\_RevenueMaximizedDemand}(double \textbf{\textit{constant\_a}}, double \textbf{\textit{constant\_b}}, double \textbf{\textit{demand}});
+	\end{itemize}
+\item Description:
+	\begin{itemize}
+	\item Returns the number of units sold which would maximize the revenue earned from the production.
+	\end{itemize}
+\item Equation:     $\hat{D} = \frac{a}{2b}$
+	\begin{itemize}[noitemsep]
+	\item $\hat{D}$ := Total units sold to maximize the total revenue earned from production.
+	\item a, b := Constants
+	\item Conditions:
+		\begin{itemize}
+		\item $\frac{dTR}{dD} = a - 2bD = 0$
+		\end{itemize}
+	\end{itemize}
+\item Arguments:
+	\begin{itemize}[noitemsep]
+	\item \textit{double \textbf{constant\_a}} := Constant
+	\item \textit{double \textbf{constant\_b}} := Constant
+	\item \textit{double \textbf{demand}} := Total number of units sold after production.
+	\end{itemize} 
+\item Intermediate Variables: \textbf{NONE}
+\item Return:
+	\begin{itemize}
+	\item \textit{double} \textbf{revenueMaximizedDemand}
+	\end{itemize}
+\item Tested:
+	\begin{itemize}
+	\item \textbf{YES} - LIMITED
+	\end{itemize}
+\end{itemize}
+
+% -- -- Revenue Maximized Demand
+\cleardoublepage
+\subsubsection{gECON\_BreakEvenPoints}
+
+\begin{itemize}
+\item Prototype:
+	\begin{itemize}
+	\item double \textbf{gECON\_BreakEvenPoints}(double \textbf{\textit{constant\_a}}, double \textbf{\textit{constant\_b}}, double \textbf{\textit{variableCostsPerUnit}}, double \textbf{\textit{fixedCosts}});
+	\end{itemize}
+\item Description:
+	\begin{itemize}
+	\item Returns the number of units which need to be sold after production for the total revenue earned from the production will equal to the total costs of the production. 
+	\end{itemize}
+\item Equation:     $BEP = \frac{-(a-c_v)\pm\sqrt{(a-c_v)^2-4(b)(C_F)}}{2(-b)} = \frac{i0\pm i1}{i2}$
+	\begin{itemize}[noitemsep]
+	\item BEP := Number of units which need to be sold for the total revenue to equal total costs.
+	\item $C_F$ := The fixed or inital costs of the production
+	\item $c_v$ := The costs per unit produced.
+	\item a, b := Constants
+	\end{itemize}
+\item Arguments:
+	\begin{itemize}[noitemsep]
+	\item \textit{double \textbf{constant\_a}} := Constant
+	\item \textit{double \textbf{constant\_b}} := Constant
+	\item \textit{double \textbf{variableCostsPerUnit}} := The costs per each unit produced.
+	\item \textit{double \textbf{fixedCosts}} := The fixed of initial costs of the production.
+	\end{itemize} 
+\item Structure and Type Definition:
+	\begin{itemize}https://github.com/sowamy/Galcor
+	\item 
+\begin{verbatim}
+struct breakEvenPoints {
+    double low;
+    double high;
+};
+
+typedef struct breakEvenPoints BEP;
+\end{verbatim}
+	\end{itemize}
+\item Intermediate Variables: 
+	\begin{itemize}
+	\item \textit{double} \textbf{i0} := Intermediate variable 0.
+	\item \textit{double} \textbf{i1} := Intermediate variable 1.
+	\item \textit{double} \textbf{i2} := Intermediate variable 2.
+	\item \textit{BEP} \textbf{out} := breakEvenPoints structure whose elements represent the low and high break even points.
+	\end{itemize}
+\item Return:
+	\begin{itemize}
+	\item \textit{double} \textbf{out}
+	\end{itemize}
+\item Tested:
+	\begin{itemize}
+	\item \textbf{YES} - LIMITED
+	\end{itemize}
+\end{itemize}
+\cleardoublepage
+
+\end{document}
