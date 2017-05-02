@@ -1,5 +1,7 @@
+//-----------------------------------------------------------------------------------------------------------
+//                         FILE: galcor.c
+//-----------------------------------------------------------------------------------------------------------
 /*
-FILE: galcor.c
 DESCRIPTION:
     - Holds general functionality of the galcor program, key modules.
 */
@@ -60,7 +62,7 @@ float g_Average( const int *array_in, int size )
     int counter = 0;
     int *arrayPtr = array_in;
 
-    sum = g_SumArray( array_in, size );
+    sum = g_Sum( array_in, size );
     avg = sum / size;
 
     return avg;

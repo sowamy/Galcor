@@ -1,8 +1,9 @@
 #include <stdio.h>
-#include <galcorCONTROLLER.h>
+#include <gECON.h>
 
 int main( void )
 {
-    gCONTROLLER_RunInTerminal();
+    BEP answer = gECON_BreakEvenPoints( 180, 0.02, 83, 73000 );
+    printf( "%.2f - %.2f", answer.low, answer.high );
     return 0;
 }

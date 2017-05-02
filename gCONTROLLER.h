@@ -1,0 +1,4 @@
+#ifndef GALCORCONTROLLER_H
+#define GALCORCONTROLLER_H
+void gCONTROLLER_RunInTerminal( void );
+#endif // GALCORCONTROLLER_H
