@@ -176,20 +176,14 @@ PeriodicSignalPtr periodicSignalGenerator(int n, int delay, double amplitude, do
 double signalEnergy (double *sigInc, int a, int b)
 {
 	int i = 0;
-	int n = b - a;
 	double energy = 0;
 
 	for(i = 0;i < a;i++) { sigInc++; };
 
-	printf("signalEnergy START\n");
-
-	for(i = 0;i < n;i++) {
+	for(i = 0;i < (b-a);i++) {
 		energy += *sigInc * *sigInc;
-		printf("%d: %lf\n", i, *sigInc);
 		sigInc++;
 	} // END FOR
-
-	printf("Energy: %lf\nsignalEnergy END\n", energy);
 
 	return energy;
 } // END FUNCTION signalEnergy
