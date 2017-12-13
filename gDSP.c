@@ -15,6 +15,29 @@
 // Structure and Type Definitions
 /* STRUCTURE: PeriodicSignal
  * DESCRIPTION:
+ * -- This structure contains the samples and characteristics of a non-periodic signal
+ * VARIABLES:
+ * -- delay 					:= The number of samples that the signal is delayed from time 0.
+ * -- n 						:= The number of samples of which the signal consists.
+ * -- samplingTime 				:= The amount of time in microseconds between each sample.
+ * -- signal 					:= A pointer to the address of the first sample in the signal.
+ *									This pointer may be incremented to obtain each individual sample of the signal.
+ * -- amplitude_pos 			:= Describes the highest magnitude of a sample in the signal.
+ * -- amplitude_neg				:= Describes the lowest magnitude of a sample in the signal.
+ */
+struct Signal {
+	int delay;
+	int n;
+	int samplingTime;
+	double *signal;
+	double maxAmplitude_pos;
+	double maxAmplitude_neg;
+}; // END STRUCTURE Signal
+typedef struct Signal *SignalPtr;
+//-----------------------------------------------------------------------------------------------------------
+// Structure and Type Definitions
+/* STRUCTURE: PeriodicSignal
+ * DESCRIPTION:
  * -- This structure contains a periodic digital signal and it's attributes.
  * MATHEMATICAL EQUATIONS:
  * -- General Formula of a Digita Periodic Sinusoidal Signal
@@ -48,7 +71,6 @@ struct PeriodicSignal {
 	double frequency_cyclesPerSample;
 	double phase; // In radians
 }; // END STRUCTURE PeriodicSignal
-
 typedef struct PeriodicSignal *PeriodicSignalPtr;
 //-----------------------------------------------------------------------------------------------------------
 // Function Prototypes
@@ -130,4 +152,3 @@ PeriodicSignalPtr periodicSignalGenerator(int n, int delay, double amplitude, do
 
 } // END FUNCTION periodicSignalGenerator
 //-----------------------------------------------------------------------------------------------------------
-
