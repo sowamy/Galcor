@@ -42,6 +42,9 @@ RANGE OF VALUES:
 /* STRUCTURE: <structureName>
  * DESCRIPTION:
  * -- <description body>
+ * MATHEMATICAL EQUATIONS:
+ * -- <equation(s)>
+ * -- -- <argument(s)/variables> := <description>
  * VARIABLES:
  * -- <type> <variableName> := <description>
  * ERROR: (optional)

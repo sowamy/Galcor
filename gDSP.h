@@ -10,4 +10,9 @@ struct PeriodicSignal {
 	double frequency_cyclesPerSample;
 	double phase; // In radians
 }; // END STRUCTURE PeriodicSignal
+
+typedef struct PeriodicSignal *PeriodicSignalPtr;
+
+PeriodicSignalPtr periodicSignalGenerator(int n, int delay, double amplitude, double phase, double freq);
 #endif // GDSP_H
+
