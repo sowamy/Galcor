@@ -33,9 +33,9 @@ struct PeriodicSignal {
 	int n;
 	int samplingTime;
 	double *signal;
-	double amplitude = 0;
-	double frequency_radPerSample = 0;
-	double frequency_cyclesPerSample = 0;
-	double phase = 0; // In radians
+	double amplitude;
+	double frequency_radPerSample;
+	double frequency_cyclesPerSample;
+	double phase; // In radians
 }; // END STRUCTURE --
 //-----------------------------------------------------------------------------------------------------------

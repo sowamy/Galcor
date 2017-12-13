@@ -1,9 +1,9 @@
 #include <stdio.h>
-#include <gECON.h>
+#include "gDSP.h"
 
 int main( void )
 {
-    BEP answer = gECON_BreakEvenPoints( 180, 0.02, 83, 73000 );
-    printf( "%.2f - %.2f", answer.low, answer.high );
+    struct PeriodicSignal a;
+	a.amplitude = 10;
     return 0;
 }
