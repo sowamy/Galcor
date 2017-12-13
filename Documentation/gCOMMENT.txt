@@ -1,5 +1,11 @@
 	               COMMENTING CONVENTIONS USED IN GALCOR
 
+--------------------------------------------FILE NAME--------------------------------------------------
+/* FILE: gDSP.c
+ * DESCRIPTION: This file contains functionality and data structures which describes
+ * 				and processes digital signals in a multitude of environments.
+ */
+
 --------------------------------------------LINEBREAK--------------------------------------------------
 //-----------------------------------------------------------------------------------------------------------
 
@@ -11,28 +17,42 @@ RANGE OF VALUES:
 --------------------------------------------FUNCTION---------------------------------------------------
 //-----------------------------------------------------------------------------------------------------------
 /* FUNCTION: <function name>
-// DESCRIPTION:
-// -- <description body> -- <returns -- given -->
-// MATHEMATICAL EQUATIONS:
-// -- <equation(s)>
-// -- -- <argument(s)/variables> := <description>
-// ARGUMENTS:
-// -- <argument(s)> := <description>
-// INTERMEDIATE VARIABLES:
-// -- <variables not returned or in arguments> := <description>
-// RETURN:
-// -- <return <type>return variable> 
-// ERROR:
-// -- <error conditions> / NONE
-// TESTED: YES / NO
-*/
--- ( -- )
+ * DESCRIPTION:
+ * -- <description body> -- <returns -- given -->
+ * MATHEMATICAL EQUATIONS:
+ * -- <equation(s)>
+ * -- -- <argument(s)/variables> := <description>
+ * ARGUMENTS:
+ * -- <argument(s)> := <description>
+ * INTERMEDIATE VARIABLES:
+ * -- <variables not returned or in arguments> := <description>
+ * RETURN:
+ * -- <return <type>return variable>
+ * ERROR:
+ * -- <error conditions> / NONE
+ * TESTED: YES / NO
+ */
+<functionName> ( <arguments> )
 {
-	
+
 } // END FUNCTION --
+//-----------------------------------------------------------------------------------------------------------
+
+--------------------------------------------STRUCTURES------------------------------------------------
+/* STRUCTURE: <structureName>
+ * DESCRIPTION:
+ * -- <description body>
+ * VARIABLES:
+ * -- <type> <variableName> := <description>
+ * ERROR: (optional)
+ * -- <errorCondition>
+ */
+struct -- {
+	--
+}; // END STRUCTURE --
 //-----------------------------------------------------------------------------------------------------------
 
 --------------------------------------------KEYWORDS-------------------------------------------------
 TESTED: YES - LIMITED	:= Tested for functionality, but not yet tested for bugs.
-TESTED: YES		:= Tested for functionality and for bugs. 
+TESTED: YES		:= Tested for functionality and for bugs.
 			    Able to predict and handle bugs and errors.
