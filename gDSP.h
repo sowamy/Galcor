@@ -1,5 +1,8 @@
 #ifndef GDSP_H
 #define GDSP_H
+
+#define PI 3.14159265359
+
 struct PeriodicSignal {
 	int delay;
 	int n;
@@ -15,4 +18,3 @@ typedef struct PeriodicSignal *PeriodicSignalPtr;
 
 PeriodicSignalPtr periodicSignalGenerator(int n, int delay, double amplitude, double phase, double freq);
 #endif // GDSP_H
-
