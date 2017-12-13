@@ -73,9 +73,6 @@ struct PeriodicSignal {
 }; // END STRUCTURE PeriodicSignal
 typedef struct PeriodicSignal *PeriodicSignalPtr;
 //-----------------------------------------------------------------------------------------------------------
-// Function Prototypes
-PeriodicSignalPtr periodicSignalGenerator(int n, int delay, double amplitude, double phase, double freq);
-//-----------------------------------------------------------------------------------------------------------
 /* FUNCTION: periodicSignalGenerator
  * DESCRIPTION:
  * -- Takes in the <amplitude>, number of samples <n>, the frequency in cycles per sample <freq>, the
@@ -151,4 +148,49 @@ PeriodicSignalPtr periodicSignalGenerator(int n, int delay, double amplitude, do
 	return sigStruct;
 
 } // END FUNCTION periodicSignalGenerator
+//-----------------------------------------------------------------------------------------------------------
+/* FUNCTION: signalEnergy
+ * DESCRIPTION:
+ * -- Takes in a pointer to the first address of a <signal>, the sample to start taking the energy <a>,
+ *		and the last sample to take the energy. Then return the <energy> calculated between the two
+ *		samples given of the inputted signal.
+ * MATHEMATICAL EQUATIONS:
+ * -- E = x(n)^2, a < n < b
+ * -- -- E	:= Energy of the signal
+ * -- -- x	:= The magnitude of the signal at sample n
+ * -- -- n	:= Signal sample.
+ * -- -- a	:= First signal to start taking the energy.
+ * -- -- b	:= Final signal to calculate the energy of.
+ * ARGUMENTS:
+ * -- signal	:= Pointer to the first address of the signal to be evauluated.
+ * -- a			:= Sample to start calculating the energy.
+ * -- b			:= Final sample to calculate the energy.
+ * INTERMEDIATE VARIABLES:
+ * -- <variables not returned or in arguments> := <description>
+ * RETURN:
+ * -- energy	:= Calculated energy of the signal.
+ * ERROR:
+ * --  NONE
+ * TESTED: NO
+ */
+double signalEnergy (double *sigInc, int a, int b)
+{
+	int i = 0;
+	int n = b - a;
+	double energy = 0;
+
+	for(i = 0;i < a;i++) { sigInc++; };
+
+	printf("signalEnergy START\n");
+
+	for(i = 0;i < n;i++) {
+		energy += *sigInc * *sigInc;
+		printf("%d: %lf\n", i, *sigInc);
+		sigInc++;
+	} // END FOR
+
+	printf("Energy: %lf\nsignalEnergy END\n", energy);
+
+	return energy;
+} // END FUNCTION signalEnergy
 //-----------------------------------------------------------------------------------------------------------

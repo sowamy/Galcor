@@ -17,4 +17,6 @@ struct PeriodicSignal {
 typedef struct PeriodicSignal *PeriodicSignalPtr;
 
 PeriodicSignalPtr periodicSignalGenerator(int n, int delay, double amplitude, double phase, double freq);
+double signalEnergy (double *signal, int a, int b);
+
 #endif // GDSP_H
