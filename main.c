@@ -2,34 +2,37 @@
 #include <stdlib.h>
 #include "gDSP.h"
 
+void printSignal(double* sigInc, int a, int b);
+
 int main( void )
 {
 	double a[8] = {0, 0, 0, 2, -2, 5, 5, -10};
 	double* b = &a[0];
 
-	SignalPtr s = getSignalAttributes(b, 8);
-	printf("\nDelay: %d\n", s->delay);
-	printf("Max Amplitude: %lf\n", s->maxAmplitude_pos);
-	printf("Min Amplitude; %lf\n", s->maxAmplitude_neg);
-	printf("Energy: %lf\n", s->totalEnergy);
-	printf("Power: %lf\n", s->totalPower);
+	double* c = scaleSignal(b, 22, (double)'a');
 
-	// Switch Limits Test
-	printf( "\nEnergy_Test: %lf\n", signalEnergy(s->signal, 5, 2));
-	printf( "Power_Test: %lf\n", signalPower(s->signal, 5, 2));
+	printSignal(c, 0, 8);
 
-	// Type Test
-	// printf( "\nEnergy_Test: %lf\n", signalEnergy(s->signal, a, 2));
-	// printf( "\nPower_Test: %lf\n", signalPower(s->signal, a, 2));
-
-	// Out of range Test
-	printf( "\nEnergy_Test: %lf\n", signalEnergy(s->signal, 5, 9));
-	printf( "Power_Test: %lf\n", signalPower(s->signal, 5, 9));
-	printf( "\nEnergy_Test: %lf\n", signalEnergy(s->signal, 5, 10));
-	printf( "Power_Test: %lf\n", signalPower(s->signal, 5, 10));
-	printf( "\nEnergy_Test: %lf\n", signalEnergy(s->signal, 5, 11));
-	printf( "Power_Test: %lf\n", signalPower(s->signal, 5, 11));
-	printf( "\nEnergy_Test: %lf\n", signalEnergy(s->signal, -5, 10));
-	printf( "Power_Test: %lf\n", signalPower(s->signal, -5, 10));
     return 0;
 }
+
+void printSignal(double* sigInc, int a, int b)
+{
+	// Counters
+	int i = 0;
+	int j = 0;
+
+	// Iterate through signal until sample <a> is reached
+	while( i < a ) {
+		sigInc++;
+		i++;
+	} // END WHILE : Starting position
+
+	// Prints each sample until sample <b> is reached
+	while( j < (b - a) ) {
+		printf("%d: %.3lf\n", (a + j), *sigInc);
+		sigInc++;
+		j++;
+	} // END WHILE : Print every sample in signal
+
+} // END FUNCTION printSignal
