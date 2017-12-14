@@ -8,12 +8,12 @@ int main( void )
 {
 	double a[8] = {0, 0, 0, 2, -2, 5, 5, -10};
 	double* aPtr = &a[0];
-	double b[10] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+	double b[10] = {1, 1, 1, 1, 1, 2, 1, 2, 1, 1};
 	double* bPtr = &b[0];
 
-	double* y = sumSignals(aPtr, bPtr, 11, 0);
+	double* y = multiplySignals(aPtr, bPtr, 0, 8);
 
-	printSignal(y, 0, 20);
+	printSignal(y, 0, 8);
 
 }
 
