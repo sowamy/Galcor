@@ -28,7 +28,7 @@ RANGE OF VALUES:
  * -- <variables not returned or in arguments> := <description>
  * RETURN:
  * -- <return <type>return variable>
- * ERROR:
+ * ERRORS:
  * -- <error conditions> / NONE
  * TESTED: YES / NO
  */
