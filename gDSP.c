@@ -6,6 +6,7 @@
 //-----------------------------------------------------------------------------------------------------------
 // Included Libraries
 #include <stdlib.h>
+#include <stdbool.h>
 #include <math.h>
 //-----------------------------------------------------------------------------------------------------------
 // Constants
@@ -71,6 +72,57 @@ struct PeriodicSignal {
 	double phase; // In radians
 }; // END STRUCTURE PeriodicSignal
 typedef struct PeriodicSignal *PeriodicSignalPtr;
+//-----------------------------------------------------------------------------------------------------------
+/* FUNCTION: getSignalAttributes
+ * DESCRIPTION:
+ * -- Given a signal <sigInc> and the number of samples it contains <n>; this function returns
+ *		a variety of characteristics of the signal inputted. This function returns a signal structures
+ *		which contains a variety of information about the signal.
+ * ARGUMENTS:
+ * -- sigInc	:= Inputted signal to be evaluated
+ * -- n			:= Number of samples in the signal
+ * INTERMEDIATE VARIABLES:
+ * -- delayFlag	:= Used to find the delay of the signal
+ * RETURN:
+ * -- ss		:= Stores the newly created <Signal> structure
+ * ERROR:
+ * -- NONE
+ * TESTED: YES - limited
+ */
+SignalPtr getSignalAttributes (double* sigInc, int n)
+{
+	int i = 0;	// counter
+	bool delayFlag = true;
+
+	// Allocates memory needed for <Signal> structure
+	SignalPtr ss = (SignalPtr)malloc(sizeof(struct Signal));
+	ss->signal = (double*)malloc(sizeof(double)*n);
+
+	// Initializes attributes of the signal
+	ss->signal = sigInc;
+	ss->delay = 0;
+	ss->maxAmplitude_pos = *sigInc;
+	ss->maxAmplitude_neg = *sigInc;
+
+	// Iterates through entire signal, getting characterics along the way
+	for(i = 0; i < n; i++) {
+		// Incrementes delay value for every 0 at the beginning of the signal
+		if(delayFlag == true && *sigInc == 0) {
+			ss->delay++;
+		} else {
+			delayFlag = false;
+		} // END IF...ELSE : Delay
+
+		// Redefines the maximum and minimum amplitudes of the signal if the next sample is
+		// 	greater or less than the current maximum and minimum
+		if( *sigInc > ss->maxAmplitude_pos ){ ss->maxAmplitude_pos = *sigInc; }
+		if( *sigInc < ss->maxAmplitude_neg ){ ss->maxAmplitude_neg = *sigInc; }
+
+		sigInc++;
+	} // END FOR : Iterates through entire signal
+
+	return ss;
+} // END FUNCTION getSignalAttributes
 //-----------------------------------------------------------------------------------------------------------
 /* FUNCTION: periodicSignalGenerator
  * DESCRIPTION:
@@ -207,5 +259,5 @@ double signalEnergy (double *sigInc, int a, int b)
  * --  NONE
  * TESTED: YES - limited
  */
-double signalPower (double *sigInc, int a, int b) { return signalEnergy(sigInc, a, b) / ((b - a) + 1); }
+double signalPower (double *sigInc, int a, int b) { return signalEnergy(sigInc, a, b) / ((b - a)); }
 //-----------------------------------------------------------------------------------------------------------

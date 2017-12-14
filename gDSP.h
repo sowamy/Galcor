@@ -27,6 +27,7 @@ typedef struct Signal *SignalPtr;
 typedef struct PeriodicSignal *PeriodicSignalPtr;
 
 PeriodicSignalPtr periodicSignalGenerator(int n, int delay, double amplitude, double phase, double freq);
+SignalPtr getSignalAttributes (double* sigInc, int n);
 double signalEnergy (double *signal, int a, int b);
 double signalPower (double *sigInc, int a, int b);
 
