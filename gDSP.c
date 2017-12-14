@@ -5,10 +5,8 @@
  */
 //-----------------------------------------------------------------------------------------------------------
 // Included Libraries
-#include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include <stdbool.h>
 //-----------------------------------------------------------------------------------------------------------
 // Constants
 #define PI 3.14159265359
@@ -180,7 +178,6 @@ double signalEnergy (double *sigInc, int a, int b)
 	if(a != 0){ for(i = 0;i < a;i++) { sigInc++; } }
 
 	for(i = 0;i <= (b-a);i++) {
-		printf( "\nsignalEnergy %d: %lf", (i + a), *sigInc );
 		energy += *sigInc * *sigInc;
 		sigInc++;
 	} // END FOR
