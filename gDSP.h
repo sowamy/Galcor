@@ -33,5 +33,6 @@ SignalPtr getSignalAttributes (double* sigInc, int n);
 double signalEnergy (double *signal, int a, int b);
 double signalPower (double *sigInc, int a, int b);
 double* scaleSignal (double* sigInc, int n, double scaler);
+double* sumSignals (double* sig1, double* sig2, int a, int b);
 
 #endif // GDSP_H

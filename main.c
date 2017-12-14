@@ -7,13 +7,14 @@ void printSignal(double* sigInc, int a, int b);
 int main( void )
 {
 	double a[8] = {0, 0, 0, 2, -2, 5, 5, -10};
-	double* b = &a[0];
+	double* aPtr = &a[0];
+	double b[10] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+	double* bPtr = &b[0];
 
-	double* c = scaleSignal(b, 22, (double)'a');
+	double* y = sumSignals(aPtr, bPtr, 0, 8);
 
-	printSignal(c, 0, 8);
+	printSignal(y, 0, 10);
 
-    return 0;
 }
 
 void printSignal(double* sigInc, int a, int b)

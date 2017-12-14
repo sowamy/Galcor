@@ -42,7 +42,7 @@ typedef struct Signal *SignalPtr;
  * DESCRIPTION:
  * -- This structure contains a periodic digital signal and it's attributes.
  * MATHEMATICAL EQUATIONS:
- * -- General Formula of a Digita Periodic Sinusoidal Signal
+ * -- General Formula of a Digital Periodic Sinusoidal Signal
  * -- x(n + d) = A cos(wn + p), a < n < b
  * -- -- x(n)	:= The amplitude of the signal at sample number n.
  * -- -- n		:= The sample number.
@@ -76,11 +76,12 @@ struct PeriodicSignal {
 typedef struct PeriodicSignal *PeriodicSignalPtr;
 //-----------------------------------------------------------------------------------------------------------
 // Function Prototypes
-PeriodicSignalPtr periodicSignalGenerator(int n, int delay, double amplitude, double phase, double freq);
+PeriodicSignalPtr periodicSignalGenerator (int n, int delay, double amplitude, double phase, double freq);
 SignalPtr getSignalAttributes (double* sigInc, int n);
 double signalEnergy (double *signal, int a, int b);
 double signalPower (double *sigInc, int a, int b);
 double* scaleSignal (double* sigInc, int n, double scaler);
+double* sumSignals (double* sig1, double* sig2, int a, int b);
 //-----------------------------------------------------------------------------------------------------------
 /* FUNCTION: getSignalAttributes
  * DESCRIPTION:
@@ -192,10 +193,11 @@ PeriodicSignalPtr periodicSignalGenerator(int n, int delay, double amplitude, do
 	} // END WHILE : Delay
 
 	// Create the periodic sinusoid
-	for(j; j < (n-delay); j++) {
+	while(j < (n-delay)) {
 		x = amplitude * cos( w*((double)j+(double)delay) + phase );
 		*sample++ = x;
-	} // END FOR : Signal Creation
+		j++;
+	} // END WHILE : Signal Creation
 
 	// Initialize and pass signal structure
 	PeriodicSignalPtr sigStruct = (PeriodicSignalPtr)malloc(sizeof(struct PeriodicSignal));
@@ -295,8 +297,8 @@ double signalPower (double *sigInc, int a, int b) { return signalEnergy(sigInc, 
  * RETURN:
  * -- ss		:= Scaled signal returned
  * ERROR:
- * -- NONE
- * TESTED: NO
+ * -- Type Error: Terminal error if the types do not match the arguments as specified in the prototype
+ * TESTED: YES - limited
  */
 double* scaleSignal (double* sigInc, int n, double scaler)
 {
@@ -313,4 +315,62 @@ double* scaleSignal (double* sigInc, int n, double scaler)
 
 	return ss;
 } // END FUNCTION scaleSignal
+//-----------------------------------------------------------------------------------------------------------
+/* FUNCTION: sumSignals
+ * DESCRIPTION:
+ * -- Adds 2 signals <sig1> and <sig2> from starting sample <a> to the final sample <b>.
+ * -- Returns the summed signal <y> which is of the length <n>.
+ * -- NOTE: I have decided to leave it up to the user to figure the number of samples in summed signal <y>.
+ 			This can be easily done by subtracting the final argument <b> from the third <a>.
+ * -- NOTE: I have decided to leave it up to the user to parse the ranges of each signal inputted to avoid
+ 			this function being overcomplicated and the errors which might result. This can be done using
+			a signal translation function in combination with this one. It is suggestible to allow
+			the user to insert custom ranges of each inputted signal if this function is to be
+			employed in a programming language which features a standard error handling library.
+ * MATHEMATICAL EQUATIONS:
+ * -- y(n) = x1(n) + x2(n)
+ * -- -- n	:= Particular sample number
+ * -- -- x1	:= First signal to be summed	(addend)
+ * -- -- x2 := Second signal to be summed	(addend)
+ * -- -- y	:= Sum of the two signals
+ * ARGUMENTS:
+ * -- sig1	:= Pointer to first signal to be summed
+ * -- sig2	:= Pointer to second signal to be summed
+ * -- a		:= Starting sample of which both signals are to be summed
+ * -- b		:= Final sample of which both signal are to be summed
+ * INTERMEDIATE VARIABLES:
+ * -- yInc	:= Pointer to the summed signal which is incremented and used to assign the summations
+ * RETURN:
+ * -- y		:= The pointer to the summed signal
+ * ERROR:
+ * -- NONE
+ * TESTED: NO
+ */
+double* sumSignals (double* sig1, double* sig2, int a, int b)
+{
+	// Counters
+	int i = 0;
+	int j = 0;
+
+	double* y = (double*)malloc(sizeof(double)*(b - a));
+	double* yInc = y;
+
+	// Increment each signal pointer to the starting sample
+	while(i < a) {
+		sig1++;
+		sig2++;
+		i++;
+	} // END WHILE : Starting Sample
+
+	// Sum both signals <sig1> and <sig2> together into signal <y>
+	while(j < (b - a)) {
+		*yInc = *sig1 + *sig2;
+		yInc++;
+		sig1++;
+		sig2++;
+		j++;
+	} // END WHILE :
+	
+	return y;
+} // END FUNCTION sumSignals
 //-----------------------------------------------------------------------------------------------------------
