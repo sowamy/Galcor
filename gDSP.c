@@ -32,6 +32,8 @@ struct Signal {
 	double *signal;
 	double maxAmplitude_pos;
 	double maxAmplitude_neg;
+	double totalEnergy;
+	double totalPower;
 }; // END STRUCTURE Signal
 typedef struct Signal *SignalPtr;
 //-----------------------------------------------------------------------------------------------------------
@@ -73,6 +75,12 @@ struct PeriodicSignal {
 }; // END STRUCTURE PeriodicSignal
 typedef struct PeriodicSignal *PeriodicSignalPtr;
 //-----------------------------------------------------------------------------------------------------------
+// Function Prototypes
+PeriodicSignalPtr periodicSignalGenerator(int n, int delay, double amplitude, double phase, double freq);
+SignalPtr getSignalAttributes (double* sigInc, int n);
+double signalEnergy (double *signal, int a, int b);
+double signalPower (double *sigInc, int a, int b);
+//-----------------------------------------------------------------------------------------------------------
 /* FUNCTION: getSignalAttributes
  * DESCRIPTION:
  * -- Given a signal <sigInc> and the number of samples it contains <n>; this function returns
@@ -103,6 +111,8 @@ SignalPtr getSignalAttributes (double* sigInc, int n)
 	ss->delay = 0;
 	ss->maxAmplitude_pos = *sigInc;
 	ss->maxAmplitude_neg = *sigInc;
+	ss->totalEnergy = signalEnergy(sigInc, 0, n);
+	ss->totalPower = signalPower(sigInc, 0, n);
 
 	// Iterates through entire signal, getting characterics along the way
 	for(i = 0; i < n; i++) {

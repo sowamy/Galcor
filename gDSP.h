@@ -10,6 +10,8 @@ struct Signal {
 	double *signal;
 	double maxAmplitude_pos;
 	double maxAmplitude_neg;
+	double totalEnergy;
+	double totalPower;
 }; // END STRUCTURE Signal
 
 struct PeriodicSignal {

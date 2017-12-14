@@ -11,7 +11,7 @@ int main( void )
 	printf("\nDelay: %d\n", s->delay);
 	printf("Max Amplitude: %lf\n", s->maxAmplitude_pos);
 	printf("Min Amplitude; %lf\n", s->maxAmplitude_neg);
-	printf("Energy: %lf\n", signalEnergy(s->signal, 0, 8));
-	printf("Power: %lf\n", signalPower(s->signal, 0, 8));
+	printf("Energy: %lf\n", s->totalEnergy);
+	printf("Power: %lf\n", s->totalPower);
     return 0;
 }
