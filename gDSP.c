@@ -229,8 +229,9 @@ PeriodicSignalPtr periodicSignalGenerator(int n, int delay, double amplitude, do
  * RETURN:
  * -- energy	:= Calculated energy of the signal.
  * ERROR:
- * --  NONE
- * TESTED: YES - limited
+ * -- Logic Error: Yields incorrect results if b > a
+ * -- Type Error: Terminal error if a and b are not integers, and sigInc is not double*
+ * TESTED: YES
  */
 double signalEnergy (double *sigInc, int a, int b)
 {
@@ -266,8 +267,11 @@ double signalEnergy (double *sigInc, int a, int b)
  * -- a			:= Sample to start calculating the energy.
  * -- b			:= Final sample to calculate the energy.
  * ERROR:
- * --  NONE
- * TESTED: YES - limited
+ * -- Logic Error: Yields incorrect results if b > a
+ * -- Logic Error: Yields incorrect results if a and b are not in the range of the inputted signal.
+ *					N is incorrectly evaluated, making the power fractionally less as the range is increased.
+ * -- Type Error: Terminal error if a and b are not integers, and sigInc is not double*
+ * TESTED: YES
  */
 double signalPower (double *sigInc, int a, int b) { return signalEnergy(sigInc, a, b) / ((b - a)); }
 //-----------------------------------------------------------------------------------------------------------
