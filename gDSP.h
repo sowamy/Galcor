@@ -32,5 +32,6 @@ PeriodicSignalPtr periodicSignalGenerator(int n, int delay, double amplitude, do
 SignalPtr getSignalAttributes (double* sigInc, int n);
 double signalEnergy (double *signal, int a, int b);
 double signalPower (double *sigInc, int a, int b);
+double* scaleSignal (double* sigInc, int n, double scaler);
 
 #endif // GDSP_H

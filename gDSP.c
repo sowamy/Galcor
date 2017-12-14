@@ -80,6 +80,7 @@ PeriodicSignalPtr periodicSignalGenerator(int n, int delay, double amplitude, do
 SignalPtr getSignalAttributes (double* sigInc, int n);
 double signalEnergy (double *signal, int a, int b);
 double signalPower (double *sigInc, int a, int b);
+double* scaleSignal (double* sigInc, int n, double scaler);
 //-----------------------------------------------------------------------------------------------------------
 /* FUNCTION: getSignalAttributes
  * DESCRIPTION:
@@ -184,10 +185,11 @@ PeriodicSignalPtr periodicSignalGenerator(int n, int delay, double amplitude, do
 	double x = 0;
 
 	// Delay the signal
-	for(i; i < delay; i++) {
+	while(i < delay) {
 		*sample = 0.0;
 		sample++;
-	} // END FOR : Delay
+		i++;
+	} // END WHILE : Delay
 
 	// Create the periodic sinusoid
 	for(j; j < (n-delay); j++) {
@@ -274,4 +276,41 @@ double signalEnergy (double *sigInc, int a, int b)
  * TESTED: YES
  */
 double signalPower (double *sigInc, int a, int b) { return signalEnergy(sigInc, a, b) / ((b - a)); }
+//-----------------------------------------------------------------------------------------------------------
+/* FUNCTION: scale
+ * DESCRIPTION:
+ * -- Scales the amplitude of the inputted signal <sigInc> with <n> sample by the inputted <scaler>.
+ * -- Returns the scaled signal <ss> which will be of the same length as in inputted signal <sigInc>.
+ * MATHEMATICAL EQUATIONS:
+ * -- y(n) = Ax(n)
+ * -- -- y	:= Scaled signal
+ * -- -- x	:= Original signal
+ * -- -- A	:= Amount that the original signal is to be scaled
+ * ARGUMENTS:
+ * -- sigInc	:= Original signal to be scaled
+ * -- n			:= Number of samples of the original signal
+ * -- scaler	:= Amount that the outputted signal is to be scaled
+ * INTERMEDIATE VARIABLES:
+ * -- ssInc		:= Pointer to be incremented, used to assign values to ss.
+ * RETURN:
+ * -- ss		:= Scaled signal returned
+ * ERROR:
+ * -- NONE
+ * TESTED: NO
+ */
+double* scaleSignal (double* sigInc, int n, double scaler)
+{
+	int i = 0;	// counter
+	double* ss = (double*) malloc(sizeof(double)*n);
+	double* ssInc = ss;
+
+	while(i < n) {
+		*ssInc = scaler * *sigInc;
+		ssInc++;
+		sigInc++;
+		i++;
+	} // END WHILE : Scaling
+
+	return ss;
+} // END FUNCTION scaleSignal
 //-----------------------------------------------------------------------------------------------------------
