@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <stdbool.h>
 //-----------------------------------------------------------------------------------------------------------
 // Constants
 #define PI 3.14159265359
@@ -107,7 +108,7 @@ typedef struct PeriodicSignal *PeriodicSignalPtr;
  * -- sigStruct		:= Pointer to the structure which contains the signal and all its information.
  * ERROR:
  * -- NONE
- * TESTED: NO
+ * TESTED: YES - limited
  */
 PeriodicSignalPtr periodicSignalGenerator(int n, int delay, double amplitude, double phase, double freq)
 {
@@ -116,7 +117,7 @@ PeriodicSignalPtr periodicSignalGenerator(int n, int delay, double amplitude, do
 	int j = 0;
 
 	// Pointers
-	double *sigBase = malloc( sizeof(double)*n );
+	double *sigBase = (double *)malloc( sizeof(double)*n );
 	double *sample = sigBase;
 
 	double w = freq * 2 * PI;
@@ -135,7 +136,7 @@ PeriodicSignalPtr periodicSignalGenerator(int n, int delay, double amplitude, do
 	} // END FOR : Signal Creation
 
 	// Initialize and pass signal structure
-	PeriodicSignalPtr sigStruct = malloc(sizeof(struct PeriodicSignal));
+	PeriodicSignalPtr sigStruct = (PeriodicSignalPtr)malloc(sizeof(struct PeriodicSignal));
 	sigStruct->amplitude = amplitude;
 	sigStruct->delay = delay;
 	sigStruct->frequency_cyclesPerSample = freq;
@@ -162,29 +163,52 @@ PeriodicSignalPtr periodicSignalGenerator(int n, int delay, double amplitude, do
  * -- -- a	:= First signal to start taking the energy.
  * -- -- b	:= Final signal to calculate the energy of.
  * ARGUMENTS:
- * -- signal	:= Pointer to the first address of the signal to be evauluated.
+ * -- sigInc	:= Pointer to the first address of the signal to be evaluated.
  * -- a			:= Sample to start calculating the energy.
  * -- b			:= Final sample to calculate the energy.
- * INTERMEDIATE VARIABLES:
- * -- <variables not returned or in arguments> := <description>
  * RETURN:
  * -- energy	:= Calculated energy of the signal.
  * ERROR:
  * --  NONE
- * TESTED: NO
+ * TESTED: YES - limited
  */
 double signalEnergy (double *sigInc, int a, int b)
 {
 	int i = 0;
 	double energy = 0;
 
-	for(i = 0;i < a;i++) { sigInc++; };
+	if(a != 0){ for(i = 0;i < a;i++) { sigInc++; } }
 
-	for(i = 0;i < (b-a);i++) {
+	for(i = 0;i <= (b-a);i++) {
+		printf( "\nsignalEnergy %d: %lf", (i + a), *sigInc );
 		energy += *sigInc * *sigInc;
 		sigInc++;
 	} // END FOR
 
 	return energy;
 } // END FUNCTION signalEnergy
+//-----------------------------------------------------------------------------------------------------------
+/* FUNCTION: signalEnergy
+ * DESCRIPTION:
+ * -- Takes in a pointer to the first address of a <signal>, the sample to start taking the energy <a>,
+ *		and the last sample to take the energy. Then return the <power> calculated between the two
+ *		samples given of the inputted signal.
+ * MATHEMATICAL EQUATIONS:
+ * -- P = x(n)^2 / N , a < n < b
+ * -- N = b - a
+ * -- -- P	:= Power of the signal
+ * -- -- x	:= The magnitude of the signal at sample n
+ * -- -- n	:= Signal sample
+ * -- -- N	:= Total number of samples of which the signal consists
+ * -- -- a	:= First signal to start taking the energy
+ * -- -- b	:= Final signal to calculate the energy of
+ * ARGUMENTS:
+ * -- sigInc	:= Pointer to the first address of the signal to be evaluated.
+ * -- a			:= Sample to start calculating the energy.
+ * -- b			:= Final sample to calculate the energy.
+ * ERROR:
+ * --  NONE
+ * TESTED: YES - limited
+ */
+double signalPower (double *sigInc, int a, int b) { return signalEnergy(sigInc, a, b) / ((b - a) + 1); }
 //-----------------------------------------------------------------------------------------------------------

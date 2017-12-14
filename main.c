@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
 #include "gDSP.h"
 
 int main( void )
@@ -21,5 +23,18 @@ int main( void )
 	energy = signalEnergy(a->signal, 0, 30);
 
 	printf("\nSignal Energy: %lf\n", energy);
+
+	double *b = (double *) malloc(sizeof(double)*3);
+	double *bTemp = b;
+	*bTemp = 2.0;
+	bTemp++;
+	*bTemp = 4.0;
+	bTemp++;
+	*bTemp = 6.0;
+
+
+	printf( "\nEnergy: %lf\n", signalEnergy(b, 0, 2) );
+	printf( "\nPower: %lf\n", (signalEnergy(b, 0, 2) / 3) );
+	printf( "\nPower: %lf\n", signalPower(b, 0, 2) );
     return 0;
 }
