@@ -274,7 +274,7 @@ double signalEnergy (double *sigInc, int a, int b)
  * -- Logic Error: Yields incorrect results if b > a
  * -- Logic Error: Yields incorrect results if a and b are not in the range of the inputted signal.
  *					N is incorrectly evaluated, making the power fractionally less as the range is increased.
- * -- Type Error: Terminal error if a and b are not integers, and sigInc is not double*
+ * -- Compile Error: This function causes a terminal type error if a and b are not integers, and sigInc is not double*
  * TESTED: YES
  */
 double signalPower (double *sigInc, int a, int b) { return signalEnergy(sigInc, a, b) / ((b - a)); }
@@ -297,7 +297,8 @@ double signalPower (double *sigInc, int a, int b) { return signalEnergy(sigInc, 
  * RETURN:
  * -- ss		:= Scaled signal returned
  * ERROR:
- * -- Type Error: Terminal error if the types do not match the arguments as specified in the prototype
+ * -- Compile Error: This function causes a terminal error if the types do not match the arguments
+ 						as specified in the function prototype
  * TESTED: YES - limited
  */
 double* scaleSignal (double* sigInc, int n, double scaler)
@@ -343,8 +344,13 @@ double* scaleSignal (double* sigInc, int n, double scaler)
  * RETURN:
  * -- y		:= The pointer to the summed signal
  * ERROR:
- * -- NONE
- * TESTED: NO
+ * -- Logic Error: If the ranges <a> and <b> are outside of either <sig1> or <sig2> ranges, this function will
+ 					yield incorrect results.
+ * -- Runtime Error: This function causes a terminal error known as a segmentation fault if the value for
+ 					integer <b> is smaller than the value for integer <a>.
+ * -- Compile Error: This function will cause a terminal type error if the types of the arguments are not the
+ 					same as specified in the function prototype.
+ * TESTED: YES - limited
  */
 double* sumSignals (double* sig1, double* sig2, int a, int b)
 {
@@ -370,7 +376,7 @@ double* sumSignals (double* sig1, double* sig2, int a, int b)
 		sig2++;
 		j++;
 	} // END WHILE :
-	
+
 	return y;
 } // END FUNCTION sumSignals
 //-----------------------------------------------------------------------------------------------------------

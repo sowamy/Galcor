@@ -11,9 +11,9 @@ int main( void )
 	double b[10] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
 	double* bPtr = &b[0];
 
-	double* y = sumSignals(aPtr, bPtr, 0, 8);
+	double* y = sumSignals(aPtr, bPtr, 11, 0);
 
-	printSignal(y, 0, 10);
+	printSignal(y, 0, 20);
 
 }
 
