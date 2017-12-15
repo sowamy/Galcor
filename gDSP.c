@@ -33,6 +33,7 @@
 struct Signal {
 	int delay;
 	int n;
+	int index;
 	int samplingTime;
 	double *signal;
 	double maxAmplitude_pos;
@@ -76,6 +77,7 @@ typedef struct Signal *SignalPtr;
 struct PeriodicSignal {
 	int delay;
 	int n;
+	int index;
 	int samplingTime;
 	double *signal;
 	double amplitude;
