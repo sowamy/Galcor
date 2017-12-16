@@ -12,7 +12,9 @@ Galcor contains a variety of C programs and their header files, each created and
 
 ### Usage
 To use Galcor appropriately, the user must include the header to the desired library.
+
 Example: __#include "./home/Desktop/Galcor/galcor.h"__
+
 The user then should be able to access any and all functionality featured within the corresponding C file.
 
 ## Libraries
